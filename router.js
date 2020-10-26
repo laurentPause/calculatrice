@@ -40,7 +40,7 @@ function init(callback) {
     expressApp.set('view engine', 'ejs');
  
     /* assets sera le répertoire où se trouverons nos fichiers côté client */
-    expressApp.use(express.static(path.join(__dirname, 'assets')));
+    expressApp.use(express.static(path.join(__dirname, 'public')));
      
     /* views est défini comme notre dossier de vues par défaut */
     expressApp.set('views', path.join(__dirname, '/views/'));
