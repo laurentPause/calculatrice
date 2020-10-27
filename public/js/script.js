@@ -1,6 +1,9 @@
 
 calculatrice();
 
+/**
+ * Démarre les fonctionnalité de la calculatrices
+ */
 function calculatrice() {
     addOnEcran();
     AddOperator();
@@ -10,6 +13,10 @@ function calculatrice() {
     effacer();
 }
 
+
+/**
+//  * Affiche les chiffre et , sur l'écran principale
+ */
 function addOnEcran() {
     const zero = document.getElementById('0');
     const un = document.getElementById('1');
@@ -36,6 +43,10 @@ function addOnEcran() {
     virgule.addEventListener('click', () => addNb('.'));
 }
 
+/**
+ * Ajout l'element du bouton sur l'écran principale 
+ * @param {String} nb 
+ */
 function addNb(nb) {
     const ecran = document.getElementById('ecran');
     const minEcran = document.getElementById('minEcran');
@@ -55,7 +66,9 @@ function addNb(nb) {
     }
     ecran.value += nb;
 }
-
+/**
+ * Aff
+ */
 function AddOperator() {
     const division = document.getElementById('D');
     const multiplication = document.getElementById('M');

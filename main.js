@@ -2,14 +2,14 @@ const electron = require('electron');
 const app = require('./app');
  
 let window;
- 
+ console.log(__dirname);
 function createWindow() {
     /* Créer une fenêtre de 800px par 600px sans bordures */
     window = new electron.BrowserWindow({
         width: 369,
         height: 544,
         autoHideMenuBar :true,
-        icon: './calculatrice.png'
+        icon: __dirname + '/public/img/calculatrice.png'
     });
     menu = new electron.Menu({
         menu: null
