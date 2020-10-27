@@ -1,9 +1,14 @@
-addOnEcran();
-AddOperator();
-calcul();
-displayHistorique();
-remettreAzero();
-effacer();
+
+calculatrice();
+
+function calculatrice() {
+    addOnEcran();
+    AddOperator();
+    calcul();
+    displayHistorique();
+    remettreAzero();
+    effacer();
+}
 
 function addOnEcran() {
     const zero = document.getElementById('0');
@@ -175,6 +180,10 @@ function addHistorique(ecran, minEcran, result) {
             const calculString = JSON.stringify(calculs);
             localStorage.setItem('calculs', calculString);
         }else{
+            for (let index = 9; index > 0; index--) {
+               calculs[index] = calculs[index - 1];
+                
+            }
             calculs[0] = calcul;
             const calculString = JSON.stringify(calculs);
             localStorage.setItem('calculs', calculString);
