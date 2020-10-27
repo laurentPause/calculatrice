@@ -70,7 +70,7 @@ function addOp(operator) {
 
     NB.value = 0
 
-    minEcran.value += ecran.value + ' ' + operator;
+    minEcran.value += ' ' + ecran.value + ' ' + operator;
 
 }
 
@@ -85,25 +85,75 @@ function calcul() {
             const aCalculer = minEcran.value.split(' ');
             console.log(aCalculer);
             let number = 0;
+            let position = 0;
+            let isOperator = false;
+            let operator = '';
             aCalculer.forEach(element => {
-                switch (element) {
-                    case '+':
-                        number = number + parseFloat(ecran.value)
-                        break;
-                    case '-':
-                        number = number - parseFloat(ecran.value)
-                        break;
-                    case '/':
-                        number = number / parseFloat(ecran.value)
-                        break;
-                    case '*':
-                        number = number * parseFloat(ecran.value)
-                        break;
-
-                    default:
-                        number = parseFloat(element);
-                        break;
+                console.log(position, aCalculer.length);
+                if (position == aCalculer.length - 1) {
+                    switch (element) {
+                        case '+':
+                            number = number + parseFloat(ecran.value)
+                            break;
+                        case '-':
+                            number = number - parseFloat(ecran.value)
+                            break;
+                        case '/':
+                            number = number / parseFloat(ecran.value)
+                            break;
+                        case '*':
+                            number = number * parseFloat(ecran.value)
+                            break;
+    
+                    }
+    
+                }else{
+                    switch (element) {
+                        case '+':
+                            isOperator = true;
+                            operator = element;                   
+                            break;
+                        case '-':
+                            isOperator = true;
+                            operator = element;                   
+                            break;
+                        case '/':
+                            isOperator = true; 
+                            operator = element;                   
+                            break;
+                        case '*':
+                            isOperator = true;
+                            operator = element;                   
+                            break;
+                        default:
+                            if(isOperator){
+                                switch (operator) {
+                                    case '+':
+                                        isOperator = false;
+                                        number = number + parseFloat(element)                    
+                                        break;
+                                    case '-':
+                                        isOperator = false;
+                                        number = number - parseFloat(element)                   
+                                        break;
+                                    case '/':
+                                        isOperator = false; 
+                                        number = number / parseFloat(element)                   
+                                        break;
+                                    case '*':
+                                        isOperator = false;
+                                        number = number * parseFloat(element)                  
+                                        break;
+                                }
+                            }else{
+                                number = parseFloat(element);
+                            }
+                    }
+                   
+                   
                 }
+               
+                position++;
 
             });
             addHistorique(ecran.value, minEcran.value, number);
