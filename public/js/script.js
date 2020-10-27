@@ -2,6 +2,9 @@ addOnEcran();
 AddOperator();
 calcul();
 displayHistorique();
+remettreAzero();
+effacer()
+
 function addOnEcran() {
     const zero = document.getElementById('0');
     const un = document.getElementById('1');
@@ -13,6 +16,7 @@ function addOnEcran() {
     const sept = document.getElementById('7');
     const huit = document.getElementById('8');
     const neuf = document.getElementById('9');
+    const virgule = document.getElementById('V');
 
     zero.addEventListener('click', () => addNb(0));
     un.addEventListener('click', () => addNb(1));
@@ -24,6 +28,7 @@ function addOnEcran() {
     sept.addEventListener('click', () => addNb(7));
     huit.addEventListener('click', () => addNb(8));
     neuf.addEventListener('click', () => addNb(9));
+    virgule.addEventListener('click', () => addNb('.'));
 }
 
 function addNb(nb) {
@@ -142,6 +147,27 @@ function displayHistorique() {
         const li = document.createElement('li');
         li.innerHTML = calcul;
         listeHistorique.append(li);
+    });
+}
+
+function remettreAzero() {
+    const btnCE = document.getElementById('CE');
+    const ecran = document.getElementById('ecran');
+
+    btnCE.addEventListener('click', () => {
+        ecran.value = 0;
+    });
+}
+
+function effacer() {
+    const btnC = document.getElementById('C');
+    const ecran = document.getElementById('ecran');
+    const minEcran = document.getElementById('minEcran');
+
+
+    btnC.addEventListener('click', () => {
+        ecran.value = 0;
+        minEcran.value = '';
     });
 }
 
