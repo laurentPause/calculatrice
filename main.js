@@ -8,8 +8,12 @@ function createWindow() {
     window = new electron.BrowserWindow({
         width: 369,
         height: 544,
-        frame: true
+        autoHideMenuBar :true,
+        icon: './calculatrice.png'
     });
+    menu = new electron.Menu({
+        menu: null
+    })
  
     /* Si vous décommentez cette ligne, vous verrez la console de débug Chrome */
     /* window.webContents.openDevTools(); */

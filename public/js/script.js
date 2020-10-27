@@ -3,7 +3,7 @@ AddOperator();
 calcul();
 displayHistorique();
 remettreAzero();
-effacer()
+effacer();
 
 function addOnEcran() {
     const zero = document.getElementById('0');
@@ -142,12 +142,16 @@ function displayHistorique() {
     const listeHistorique = document.getElementById('liste-historique');
     const historique = localStorage.getItem('calculs');
     const calculs = JSON.parse(historique);
-    listeHistorique.innerHTML = '';
-    calculs.forEach(calcul => {
-        const li = document.createElement('li');
-        li.innerHTML = calcul;
-        listeHistorique.append(li);
-    });
+    if(calculs.length > 0){
+        listeHistorique.innerHTML = '';
+        calculs.forEach(calcul => {
+            const li = document.createElement('li');
+            li.classList.add('list-group-item');
+            li.innerHTML = calcul;
+            listeHistorique.append(li);
+        });
+    }
+   
 }
 
 function remettreAzero() {
