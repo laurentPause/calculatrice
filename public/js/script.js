@@ -97,99 +97,27 @@ function calcul() {
     const ecran = document.getElementById('ecran');
     const minEcran = document.getElementById('minEcran');
     const NB = document.getElementById('NB');
-
+    
+    console.log(minEcran.value);
     egal.addEventListener('click', () => {
-        if (minEcran.value != '') {
-            const aCalculer = minEcran.value.split(' ');
-            console.log(aCalculer);
-            let number = 0;
-            let position = 0;
-            let isOperator = false;
-            let operator = '';
-            aCalculer.forEach(element => {
-                console.log(position, aCalculer.length);
-                if (position == aCalculer.length - 1) {
-                    switch (element) {
-                        case '+':
-                            number = number + parseFloat(ecran.value)
-                            break;
-                        case '-':
-                            number = number - parseFloat(ecran.value)
-                            break;
-                        case '/':
-                            number = number / parseFloat(ecran.value)
-                            break;
-                        case '*':
-                            number = number * parseFloat(ecran.value)
-                            break;
-    
-                    }
-    
-                }else{
-                    switch (element) {
-                        case '+':
-                            isOperator = true;
-                            operator = element;                   
-                            break;
-                        case '-':
-                            isOperator = true;
-                            operator = element;                   
-                            break;
-                        case '/':
-                            isOperator = true; 
-                            operator = element;                   
-                            break;
-                        case '*':
-                            isOperator = true;
-                            operator = element;                   
-                            break;
-                        default:
-                            if(isOperator){
-                                switch (operator) {
-                                    case '+':
-                                        isOperator = false;
-                                        number = number + parseFloat(element)                    
-                                        break;
-                                    case '-':
-                                        isOperator = false;
-                                        number = number - parseFloat(element)                   
-                                        break;
-                                    case '/':
-                                        isOperator = false; 
-                                        number = number / parseFloat(element)                   
-                                        break;
-                                    case '*':
-                                        isOperator = false;
-                                        number = number * parseFloat(element)                  
-                                        break;
-                                }
-                            }else{
-                                number = parseFloat(element);
-                            }
-                    }
-                   
-                   
-                }
-               
-                position++;
-
-            });
-            addHistorique(ecran.value, minEcran.value, number);
-            ecran.value = number;
+        const calcul = minEcran.value + ecran.value;
+        const resultat = eval(calcul);    
+        addHistorique(calcul, resultat);
+            ecran.value = resultat;
             minEcran.value = '';
             NB.value = 2;
-        }
+        
     })
 }
 
-function addHistorique(ecran, minEcran, result) {
+function addHistorique(calcul, result) {
     const historique = localStorage.getItem('calculs');
-    const calcul = minEcran + ' ' + ecran + ' = ' + result;
+    const calculHisto = calcul + ' = ' + result;
 
     if (historique) {
         const calculs = JSON.parse(historique);
         if (calculs.length < 10) {
-            calculs.push(calcul);
+            calculs.push(calculHisto);
             const calculString = JSON.stringify(calculs);
             localStorage.setItem('calculs', calculString);
         }else{
@@ -203,7 +131,7 @@ function addHistorique(ecran, minEcran, result) {
         }
     } else {
         const calculs = [];
-        calculs.push(calcul);
+        calculs.push(calculHisto);
         const calculString = JSON.stringify(calculs);
         localStorage.setItem('calculs', calculString);
     }
