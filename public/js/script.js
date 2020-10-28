@@ -101,6 +101,8 @@ function calcul() {
     console.log(minEcran.value);
     egal.addEventListener('click', () => {
         const calcul = minEcran.value + ecran.value;
+        
+        // Plus jamais sa
         const resultat = eval(calcul);    
         addHistorique(calcul, resultat);
             ecran.value = resultat;
