@@ -8,6 +8,10 @@ function createWindow() {
     window = new electron.BrowserWindow({
         width: 369,
         height: 544,
+        maxHeight:544,
+        maxWidth:369,
+        minHeight:544,
+        minWidth:369,
         autoHideMenuBar :true,
         icon: __dirname + '/public/img/calculatrice.png'
     });
